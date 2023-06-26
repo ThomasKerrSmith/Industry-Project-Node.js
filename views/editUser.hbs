@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css">
+    <title>Show Users</title>
+</head>
+
+<body>
+    <nav>
+    <h4>Dashboard</h4>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/showUsers">View Users</a></li>
+        {{#if user}}
+            <li>Welcome, {{user.username}}</li>
+        {{else}}
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
+        {{/if}}
+    </ul>
+</nav>
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            Edit User Form
+        </div>
+        <div class="card-body">
+            <form action="/editUsers/{{userData.id}}" method="POST">
+                <div class="form-group">
+                    <label for="first_name">First Name</label>
+                    <input type="text" class="form-control" id="first_name" name="first_name" value="{{userData.first_name}}">
+                </div>
+
+                <div class="form-group">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" class="form-control" id="last_name" name="last_name" value="{{userData.last_name}}">
+                </div>
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" value="{{userData.username}}">
+                </div>
+                <button class="btn btn-primary" value="Edit" type="submit">Update User</button>
+            </form>
+            <script>
+                document.getElementById('id').value = '{{userData.id}}';
+            </script>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
